@@ -174,5 +174,3 @@ dist
 *env
 *.env
 *cache*
-
-repo-name/

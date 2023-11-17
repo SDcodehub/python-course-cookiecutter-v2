@@ -1,6 +1,5 @@
 """Tests for `example_pkg.states_info`."""
 
-from pathlib import Path
 
 import pytest
 
