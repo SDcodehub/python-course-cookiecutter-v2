@@ -10,6 +10,28 @@ function install {
     python -m pip install cookiecutter pytest pytest-cov
 }
 
+# run linting, formatting, and other static code quality tools
+function lint {
+    pre-commit run --all-files
+}
+
+# same as `lint` but with any special considerations for CI
+function lint:ci {
+    # We skip no-commit-to-branch since that blocks commits to `main`.
+    # All merged PRs are commits to `main` so this must be disabled.
+    SKIP=no-commit-to-branch pre-commit run --all-files
+}
+
+# execute tests that are not marked as `slow`
+function test:quick {
+    run-tests -m "not slow" ${@:-"$THIS_DIR/tests/"}
+}
+
+# (example) ./run.sh test tests/test_states_info.py::test__slow_add
+function run-tests {
+    python -m pytest ${@:-"$THIS_DIR/tests/"}
+}
+
 function generate-project {
     cookiecutter ./ \
         --output-dir "$THIS_DIR/sample"
