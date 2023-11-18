@@ -29,7 +29,7 @@ function test:quick {
 
 # execute tests against the installed package; assumes the wheel is already installed
 function test:ci {
-    INSTALLED_PKG_DIR="$(python -c 'import example_pkg; print(example_pkg.__path__[0])')"
+    INSTALLED_PKG_DIR="$(python -c 'import {{cookiecutter.package_import_name}}; print({{cookiecutter.package_import_name}}.__path__[0])')"
     # in CI, we must calculate the coverage for the installed package, not the src/ folder
     COVERAGE_DIR="$INSTALLED_PKG_DIR" run-tests
 }
@@ -51,16 +51,16 @@ function run-tests {
 }
 
 function test:wheel-locally {
-    deactivate || true
+    source deactivate || true
     rm -rf test-env || true
-    python -m .venv test-env
+    python -m venv test-env
     source test-env/bin/activate
     clean || true
     pip install build
     build
     pip install ./dist/*.whl pytest pytest-cov
     test:ci
-    deactivate || true
+    source deactivate || true
 }
 
 # serve the html test coverage report on localhost:8000
