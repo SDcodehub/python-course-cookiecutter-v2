@@ -99,14 +99,20 @@ function create-repo-if-not-exists {
     push-initial-readme-to-repo
 }
 
+# args:
+#    REPO_NAME - name of the repository
+#    GITHUB_USERNAME - name of my github user, e.g. phitoduck
 function push-initial-readme-to-repo {
     rm -rf "$REPO_NAME"
     gh repo clone "$GITHUB_USERNAME/$REPO_NAME"
-    cd "./$REPO_NAME"
+    cd "$REPO_NAME"
     echo "# $REPO_NAME" > "README.md"
-    git branch -m main || true
+    git branch -M main || true
     git add --all
     git commit -m "feat: created repository"
+    if [[ -n "$GH_TOKEN" ]]; then
+        git remote set-url origin "https://$GITHUB_USERNAME:$GH_TOKEN@github.com/$GITHUB_USERNAME/$REPO_NAME"
+    fi
     git push origin main
 }
 
