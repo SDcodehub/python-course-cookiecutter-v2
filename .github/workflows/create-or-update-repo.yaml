@@ -13,7 +13,7 @@ on:
         default: false
         type: boolean
       package_import_name:
-        description: Used in imports, e.g. `from <name> import ...`
+        description: Used in imports, e.g. `from <name> import .....`
         required: true
         type: string
 
