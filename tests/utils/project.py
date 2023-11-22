@@ -1,3 +1,5 @@
+"""Functions for creating a cookiecut project to be used in tests."""
+
 import json
 import subprocess
 from copy import deepcopy
@@ -38,6 +40,7 @@ def generate_project(template_values: Dict[str, str], test_session_id: str):
 
 
 def initialise_git_repo(repo: Path):
+    """Run git commands to make a directory into a valid git repository."""
     subprocess.run(["git", "init"], cwd=repo, check=True)
     subprocess.run(["git", "branch", "-m", "main"], cwd=repo, check=True)
     subprocess.run(["git", "add", "--all"], cwd=repo, check=True)

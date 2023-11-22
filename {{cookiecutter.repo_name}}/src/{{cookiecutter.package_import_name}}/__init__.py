@@ -1,1 +1,1 @@
-"""example_pkg."""
+"""{{cookiecutter.package_import_name}}."""

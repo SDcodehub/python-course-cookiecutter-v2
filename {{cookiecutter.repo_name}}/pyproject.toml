@@ -7,8 +7,8 @@ build-backend = "setuptools.build_meta"
 {{cookiecutter.package_import_name}} = ["*.json"]
 
 [project]
-name = "python-course-package"
-authors = [{ name = "Eric Riddoch", email = "some-email@gmail.com" }]
+name = "{{cookiecutter.repo_name}}"
+authors = [{ name = "Sagar Desai", email = "sagardesaee@gmail.com" }]
 description = "My package description"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -22,7 +22,7 @@ dynamic = ["version"]
 test = ["pytest", "pytest-cov"]
 release = ["build", "twine"]
 static-code-qa = ["pre-commit"]
-dev = ["python-course-package[test,release,static-code-qa]"]
+dev = ["{{cookiecutter.repo_name}}[test,release,static-code-qa]"]
 
 # docs: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
 [tool.setuptools.dynamic]
