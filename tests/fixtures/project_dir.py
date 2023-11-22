@@ -3,6 +3,7 @@
 import shutil
 import subprocess
 from pathlib import Path
+from typing import Generator
 from uuid import uuid4
 
 import pytest
@@ -15,7 +16,7 @@ from tests.utils.project import (
 
 
 @pytest.fixture(scope="session")
-def project_dir() -> Path:
+def project_dir() -> Generator[Path, None, None]:
     """Create an instance of our cookiecutter template to be re-used in tests."""
     test_session_id: str = generate_test_session_id()
     template_values = {
