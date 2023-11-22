@@ -101,7 +101,7 @@ function create-repo-if-not-exists {
 
 # args:
 #    REPO_NAME - name of the repository
-#    GITHUB_USERNAME - name of my github user, e.g. phitoduck
+#    GITHUB_USERNAME - name of my github user, e.g. SDcodehub
 function push-initial-readme-to-repo {
     rm -rf "$REPO_NAME"
     gh repo clone "$GITHUB_USERNAME/$REPO_NAME"
@@ -196,7 +196,7 @@ EOF
 
     # if GH_TOKEN is set, set the remote url to it
     if [[ -n "$GH_TOKEN" ]]; then
-        git remote set-url origin "https://$GITHUB_USERNAME:$GH_TOKEN@github.com/phitoduck/$REPO_NAME"
+        git remote set-url origin "https://$GITHUB_USERNAME:$GH_TOKEN@github.com/$GITHUB_USERNAME/$REPO_NAME"
     fi
     git push origin "$UNIQUE_BRANCH_NAME"
 
